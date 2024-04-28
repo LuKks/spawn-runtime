@@ -26,6 +26,8 @@ module.exports = function spawn (name, referrer, opts = {}) {
 
   const bin = path.join(mod, '..', pkg.bin[filename])
 
+  if (opts.spawn === false) return bin
+
   try {
     execFileSync(bin, process.argv.slice(2), { stdio: 'inherit' })
   } catch (err) {
